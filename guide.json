@@ -1,0 +1,100 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "astrbot",
+    "nameCn": "AstrBot",
+    "repoName": "astrbot-deploy-guide",
+    "oneLiner": "多平台 AI Agent 助手与机器人开发框架",
+    "officialRepo": "https://github.com/AstrBotDevs/AstrBot",
+    "officialDocs": "https://docs.astrbot.app",
+    "stars": "43.3k",
+    "license": "AGPL-3.0",
+    "highlights": [
+      "支持平台：QQ / OneBot v11 / Telegram / 企业微信 / 微信公众号 / 飞书 / 钉钉 / Slack / Discord / LINE / KOOK / Satori / Misskey / Mattermost 等",
+      "模型服务：OpenAI 兼容接口、Anthropic、Gemini、DeepSeek、Moonshot、智谱、Ollama、LM Studio 等",
+      "Agent 能力：MCP、Skills、知识库、人格设定、上下文自动压缩、Agent 沙盒",
+      "插件市场：1000+ 插件可一键安装，另有 Web ChatUI 可直接在浏览器对话"
+    ],
+    "mcpSupport": "AstrBot 原生支持 MCP（WebUI → 插件 → MCP），支持 Streamable HTTP / SSE / stdio 三种连接方式。stdio 进程运行在 AstrBot 所在环境内，Docker 部署时装在容器里、装到宿主机无效；连接成功后还要在「人格设定 → 人格能力」里勾选对应工具，Agent 才会调用。",
+    "webuiUrl": "http://127.0.0.1:6185",
+    "adapterPorts": "6199",
+    "collectedAt": "2026-10-25",
+    "verification": [
+      [
+        "Docker 镜像 soulter/astrbot:latest（amd64 / arm64）可查",
+        "已核对 2026-10-25"
+      ],
+      [
+        "MCP 服务握手与工具列表（initialize / tools/list）",
+        "已验证 2026-10-25"
+      ],
+      [
+        "非目标宿主调用被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-25"
+      ]
+    ],
+    "deploy": {
+      "type": "docker",
+      "steps": [
+        "git clone https://github.com/AstrBotDevs/AstrBot",
+        "cd AstrBot",
+        "docker compose up -d"
+      ],
+      "stepsPs": [
+        "git clone https://github.com/AstrBotDevs/AstrBot",
+        "cd AstrBot",
+        "docker compose up -d"
+      ],
+      "source": "https://docs.astrbot.app/deploy/astrbot/docker.html"
+    },
+    "pitfalls": [
+      "国内网络拉不动镜像：把 `compose.yml` 里的 `image: soulter/astrbot:latest` 换成 `m.daocloud.io/docker.io/soulter/astrbot:latest`（官方文档提供）",
+      "管理面板首次登录用启动日志里打印的随机初始密码（用户名通常是 `astrbot`），登录后立刻改密码",
+      "官方文档说明 Docker 下不要用 localhost 访问面板；127.0.0.1:6185 打不开时，用启动日志里打印的局域网地址",
+      "忘记面板密码：`docker exec -it astrbot astrbot password`，改完要 `docker restart astrbot` 才生效",
+      "Docker 里 MCP 的 stdio 依赖要装在容器内，装到宿主机无效；当前官方镜像自带 Node.js 与 uv",
+      "MCP 连上不等于模型会调用：还要到「人格设定 → 人格能力」里勾选该服务器的工具",
+      "云服务器部署需要在安全组放行 6185 端口",
+      "Windows 若 compose 因 `/etc/localtime` 挂载报错，改用官方文档里 Windows Docker Desktop 的 `docker run` 命令"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/astrbot-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/astrbot-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "AstrBot 部署教程",
+    "AstrBot docker 部署",
+    "AstrBot 一键部署",
+    "AstrBot 接入微信",
+    "AstrBot 接入QQ",
+    "AstrBot MCP",
+    "AstrBot 插件",
+    "AstrBot 配置",
+    "AstrBot 中文教程",
+    "astrbot deploy guide"
+  ],
+  "topics": [
+    "astrbot",
+    "chatbot",
+    "mcp",
+    "docker",
+    "qq",
+    "telegram",
+    "llm",
+    "ai-agent"
+  ]
+}

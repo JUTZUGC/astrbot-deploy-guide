@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "astrbot-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}
